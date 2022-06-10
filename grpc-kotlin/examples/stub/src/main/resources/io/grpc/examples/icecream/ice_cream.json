@@ -4,7 +4,8 @@
       "type": 1,
       "imageUrl": "https://raw.githubusercontent.com/diegoalvis/grpc-kotlin-android/main/ice-cream-images/cone_1.png",
       "enabled": true
-    }, {
+    },
+    {
       "type": 2,
       "imageUrl": "https://raw.githubusercontent.com/diegoalvis/grpc-kotlin-android/main/ice-cream-images/cone_2.png",
       "enabled": true
@@ -18,35 +19,40 @@
       "price": 1.20,
       "barcode": "000001",
       "enabled": true
-    }, {
+    },
+    {
       "name": "Lime",
       "imageUrl": "https://raw.githubusercontent.com/diegoalvis/grpc-kotlin-android/main/ice-cream-images/2.png",
       "description": "Lime flavored gelato",
       "price": 1.25,
       "barcode": "000002",
       "enabled": true
-    }, {
+    },
+    {
       "name": "Chocolate",
       "imageUrl": "https://raw.githubusercontent.com/diegoalvis/grpc-kotlin-android/main/ice-cream-images/3.png",
       "description": "Chocolate flavored gelato",
       "price": 1.30,
       "barcode": "000003",
       "enabled": true
-    }, {
+    },
+    {
       "name": "Strawberry",
       "imageUrl": "https://raw.githubusercontent.com/diegoalvis/grpc-kotlin-android/main/ice-cream-images/4.png",
       "description": "Strawberry flavored gelato",
       "price": 1.35,
       "barcode": "000004",
       "enabled": true
-    }, {
+    },
+    {
       "name": "Strawberry Cheesecake",
       "imageUrl": "https://raw.githubusercontent.com/diegoalvis/grpc-kotlin-android/main/ice-cream-images/5.png",
       "description": "Strawberry Cheesecake flavored gelato",
       "price": 1.40,
       "barcode": "000005",
       "enabled": true
-    }, {
+    },
+    {
       "name": "Vanilla",
       "imageUrl": "https://raw.githubusercontent.com/diegoalvis/grpc-kotlin-android/main/ice-cream-images/6.png",
       "description": "Vanilla flavored gelato",

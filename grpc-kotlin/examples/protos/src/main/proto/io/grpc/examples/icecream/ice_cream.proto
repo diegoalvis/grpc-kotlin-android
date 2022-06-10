@@ -52,6 +52,6 @@ message Flavor {
 
 // Used to mock data base info from a local file in disk.
 message IceCreamDatabase {
-  repeated Cone Cone = 1;
+  repeated Cone cone = 1;
   repeated Flavor flavor = 2;
 }
