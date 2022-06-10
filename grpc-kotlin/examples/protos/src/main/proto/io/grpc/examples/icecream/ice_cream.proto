@@ -1,0 +1,57 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.icecream";
+option java_outer_classname = "IceCreamProto";
+
+package icecream;
+
+// Interface exported by the server.
+service IceCream {
+  // A simple RPC.
+  //
+  // Obtains the list of Cones available.
+  rpc GetCones(Request) returns (ConesReply);
+
+  // Obtains the list of Flavors available.
+  rpc GetFlavors(Request) returns (FlavorsReply);
+}
+
+// The request message containing the user's name.
+message Request {
+  string name = 1;
+}
+
+// The response containing the cone list.
+message ConesReply {
+  repeated Cone cone = 1;
+}
+
+// The response containing the flavor list.
+message FlavorsReply {
+  repeated Flavor flavor = 1;
+}
+
+// Cone of the ice cream, type is the (ordinal) identifier.
+message Cone {
+  int32 type = 1;
+  string imageUrl = 2;
+  bool enabled = 3;
+}
+
+// Flavor of the cream.
+message Flavor {
+  string name = 1;
+  string imageUrl = 2;
+  string description = 3;
+  double price = 4;
+  string barcode = 5;
+  bool enabled = 6;
+}
+
+// Used to mock data base info from a local file in disk.
+message IceCreamDatabase {
+  repeated Cone Cone = 1;
+  repeated Flavor flavor = 2;
+}

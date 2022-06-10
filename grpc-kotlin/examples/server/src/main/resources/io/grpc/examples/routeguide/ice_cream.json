@@ -1,0 +1,58 @@
+{
+  "cone": [
+    {
+      "type": 1,
+      "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/cone_1.png?raw=true",
+      "enabled": true
+    }, {
+      "type": 2,
+      "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/cone_2.png?raw=true",
+      "enabled": true
+    }
+  ],
+  "flavor": [
+    {
+      "name": "Lemon",
+      "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/1.png?raw=true",
+      "description": "Lemon flavored gelato",
+      "price": 1.20,
+      "barcode": "000001",
+      "enabled": true
+    }, {
+      "name": "Lime",
+      "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/2.png?raw=true",
+      "description": "Lime flavored gelato",
+      "price": 1.25,
+      "barcode": "000002",
+      "enabled": true
+    }, {
+      "name": "Chocolate",
+      "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/3.png?raw=true",
+      "description": "Chocolate flavored gelato",
+      "price": 1.30,
+      "barcode": "000003",
+      "enabled": true
+    }, {
+      "name": "Strawberry",
+      "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/4.png?raw=true",
+      "description": "Strawberry flavored gelato",
+      "price": 1.35,
+      "barcode": "000004",
+      "enabled": true
+    }, {
+      "name": "Strawberry Cheesecake",
+      "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/5.png?raw=true",
+      "description": "Strawberry Cheesecake flavored gelato",
+      "price": 1.40,
+      "barcode": "000005",
+      "enabled": true
+    }, {
+      "name": "Vanilla",
+      "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/6.png?raw=true",
+      "description": "Vanilla flavored gelato",
+      "price": 1.10,
+      "barcode": "000006",
+      "enabled": true
+    }
+  ]
+}
