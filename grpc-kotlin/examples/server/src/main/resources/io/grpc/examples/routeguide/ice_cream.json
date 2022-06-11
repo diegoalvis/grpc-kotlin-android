@@ -40,7 +40,7 @@
       "barcode": "000004",
       "enabled": true
     }, {
-      "name": "Strawberry Cheesecake",
+      "name": "Cheesecake",
       "imageUrl": "https://github.com/diegoalvis/grpc-kotlin-android/blob/main/ice-cream-images/5.png?raw=true",
       "description": "Strawberry Cheesecake flavored gelato",
       "price": 1.40,
