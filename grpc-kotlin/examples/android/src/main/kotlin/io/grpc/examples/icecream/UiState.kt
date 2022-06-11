@@ -6,11 +6,7 @@ data class UiState(
         val cones: List<Cone> = emptyList(),
         val loading: Boolean = false,
         val errorMessage: String = "",
-        val iceCream: IceCream? = null
+        val selectedCone: Cone? = null,
+        val selectedFlavors: List<Flavor> = emptyList()
 
-)
-
-data class IceCream(
-        val cone: Cone,
-        val flavors: List<Flavor>
 )

@@ -20,7 +20,6 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 uiState = uiState.copy(loading = true)
-                delay(1000)
                 val coneList = service.getCones("id")
                 uiState = uiState.copy(cones = coneList)
             } catch (e: Exception) {
@@ -35,7 +34,6 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 uiState = uiState.copy(loading = true)
-                delay(1000)
                 val flavorList = service.getFlavors("id")
                 uiState = uiState.copy(flavors = flavorList)
             } catch (e: Exception) {
@@ -50,5 +48,17 @@ class MainViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         service.close()
+    }
+
+    fun setCone(cone: Cone) {
+        uiState = uiState.copy(selectedCone = cone)
+    }
+
+    fun setFlavor(flavor: Flavor) {
+        val currentFlavorList = uiState.selectedFlavors
+        if (uiState.selectedCone != null && currentFlavorList.size == 3) {
+            return
+        }
+        uiState = uiState.copy(selectedFlavors = currentFlavorList.plus(flavor))
     }
 }

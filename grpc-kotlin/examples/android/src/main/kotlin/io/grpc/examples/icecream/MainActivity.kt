@@ -1,10 +1,12 @@
 package io.grpc.examples.icecream
 
 import android.os.Bundle
+import android.widget.ToggleButton
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.*
@@ -56,7 +58,11 @@ fun IceCreamSelector(viewModel: MainViewModel) {
                                 Image(
                                         painter = rememberAsyncImagePainter(cone.imageUrl),
                                         contentDescription = null,
-                                        modifier = Modifier.size(130.dp)
+                                        modifier = Modifier
+                                                .size(140.dp)
+                                                .clickable {
+                                                    viewModel.setCone(cone)
+                                                }
                                 )
                                 Text(text = cone.type.toString())
                             }
@@ -64,7 +70,7 @@ fun IceCreamSelector(viewModel: MainViewModel) {
                     }
                 }
             }
-            Spacer(modifier = Modifier.size(50.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             Text(text = "Select ice cream (max 3)")
             if (uiState.flavors.isEmpty()) {
                 Button(onClick = { viewModel.loadFlavors() }) {
@@ -78,7 +84,11 @@ fun IceCreamSelector(viewModel: MainViewModel) {
                                 Image(
                                         painter = rememberAsyncImagePainter(flavor.imageUrl),
                                         contentDescription = null,
-                                        modifier = Modifier.size(100.dp)
+                                        modifier = Modifier
+                                                .size(90.dp)
+                                                .clickable {
+                                                    viewModel.setFlavor(flavor)
+                                                }
                                 )
                                 Text(text = flavor.name)
                                 Text(text = "\$${flavor.price}")
@@ -86,6 +96,21 @@ fun IceCreamSelector(viewModel: MainViewModel) {
                         }
                     }
                 }
+            }
+            if (uiState.selectedCone != null) {
+                Spacer(modifier = Modifier.weight(1f))
+                uiState.selectedFlavors.reversed().map {
+                    Image(
+                            painter = rememberAsyncImagePainter(it.imageUrl),
+                            contentDescription = null,
+                            modifier = Modifier.size(80.dp)
+                    )
+                }
+                Image(
+                        painter = rememberAsyncImagePainter(uiState.selectedCone.imageUrl),
+                        contentDescription = null,
+                        modifier = Modifier.size(140.dp)
+                )
             }
         }
         if (uiState.loading) {
