@@ -8,9 +8,12 @@ class IceCreamServer(private val port: Int) {
     private val cones: Collection<Cone> = Database.cones()
     private val flavors: Collection<Flavor> = Database.flavors()
 
-    val server: Server = ServerBuilder
+    private val server: Server = ServerBuilder
             .forPort(port)
-            .addService(IceCreamService())
+            .addService(IceCreamService(
+                    cones = cones,
+                    flavors = flavors,
+            ))
             .build()
 
     fun start() {
@@ -33,9 +36,16 @@ class IceCreamServer(private val port: Int) {
         server.awaitTermination()
     }
 
-    internal class IceCreamService : IceCreamGrpcKt.IceCreamCoroutineImplBase() {
-        override suspend fun getCones(request: Request): ConesReply = conesReply {
-            cones = cones
+    internal class IceCreamService(
+            private val cones: Collection<Cone>,
+            private val flavors: Collection<Flavor>
+    ) : IceCreamGrpcKt.IceCreamCoroutineImplBase() {
+        override suspend fun getCones(request: Request) = conesReply {
+            cone.addAll(cones)
+        }
+
+        override suspend fun getFlavors(request: Request) = flavorsReply {
+            flavor.addAll(flavors)
         }
     }
 }
