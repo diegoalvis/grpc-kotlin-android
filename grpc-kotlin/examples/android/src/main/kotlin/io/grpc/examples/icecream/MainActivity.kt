@@ -1,15 +1,11 @@
 package io.grpc.examples.icecream
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Surface
@@ -20,88 +16,67 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.grpc.ManagedChannelBuilder
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.asExecutor
 import kotlinx.coroutines.launch
-import java.io.Closeable
 
 class MainActivity : AppCompatActivity() {
 
-    private val uri by lazy { Uri.parse(resources.getString(R.string.server_url)) }
-    private val greeterService by lazy { GreeterRCP(uri) }
+    private val iceCreamService by lazy { IceCreamService() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             Surface(color = MaterialTheme.colors.background) {
-                Greeter(greeterService)
+                IceCreamSelector(iceCreamService)
             }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        greeterService.close()
-    }
-}
-
-class GreeterRCP(uri: Uri) : Closeable {
-    val responseState = mutableStateOf("")
-
-    private val channel = let {
-        println("Connecting to ${uri.host}:${uri.port}")
-
-        val builder = ManagedChannelBuilder.forAddress(uri.host, uri.port)
-        if (uri.scheme == "https") {
-            builder.useTransportSecurity()
-        } else {
-            builder.usePlaintext()
-        }
-
-        builder.executor(Dispatchers.IO.asExecutor()).build()
-    }
-
-    private val greeter = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
-
-    suspend fun sayHello(name: String) {
-        try {
-            val request = request { this.name = name }
-            val response = greeter.getCones(request)
-            responseState.value = response.coneList.first().type.toString()
-        } catch (e: Exception) {
-            responseState.value = e.message ?: "Unknown Error"
-            e.printStackTrace()
-        }
-    }
-
-    override fun close() {
-        channel.shutdownNow()
+        iceCreamService.close()
     }
 }
 
 @Composable
-fun Greeter(greeterRCP: GreeterRCP) {
+fun IceCreamSelector(service: IceCreamService) {
 
     val scope = rememberCoroutineScope()
 
     val nameState = remember { mutableStateOf(TextFieldValue()) }
 
-    Column(Modifier.fillMaxWidth().fillMaxHeight(), Arrangement.Top, Alignment.CenterHorizontally) {
-        Text(stringResource(R.string.name_hint), modifier = Modifier.padding(top = 10.dp))
+    val a  = service.getCones("id")
+
+
+    Column(modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally) {
+
+        Spacer(modifier = Modifier.size(150.dp))
+        Text(text = "Select Cone")
+
+        LazyRow {
+
+            (0..10).map {
+                item {
+                    Text(text = "Element $it")
+                }
+            }
+        }
         OutlinedTextField(nameState.value, { nameState.value = it })
 
-        Button({ scope.launch { greeterRCP.sayHello(nameState.value.text) } }, Modifier.padding(10.dp)) {
-        Text(stringResource(R.string.send_request))
-    }
-
-        if (greeterRCP.responseState.value.isNotEmpty()) {
-            Text(stringResource(R.string.server_response), modifier = Modifier.padding(top = 10.dp))
-            Text(greeterRCP.responseState.value)
-        }
+//        Button({ scope.launch { se.sayHello(nameState.value.text) } }, Modifier.padding(10.dp)) {
+////            Text(stringResource(R.string.send_request))
+//        }
+//
+//        if (se.responseState.value.isNotEmpty()) {
+////            Text(stringResource(R.string.server_response), modifier = Modifier.padding(top = 10.dp))
+//            Text(se.responseState.value)
+//        }
     }
 }

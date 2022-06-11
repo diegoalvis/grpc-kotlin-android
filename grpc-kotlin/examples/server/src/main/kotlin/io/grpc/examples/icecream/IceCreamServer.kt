@@ -40,11 +40,14 @@ class IceCreamServer(private val port: Int) {
             private val cones: Collection<Cone>,
             private val flavors: Collection<Flavor>
     ) : IceCreamGrpcKt.IceCreamCoroutineImplBase() {
+
         override suspend fun getCones(request: Request) = conesReply {
+            // TODO implement logic here to get the information
             cone.addAll(cones)
         }
 
         override suspend fun getFlavors(request: Request) = flavorsReply {
+            // TODO implement logic here to get the information
             flavor.addAll(flavors)
         }
     }

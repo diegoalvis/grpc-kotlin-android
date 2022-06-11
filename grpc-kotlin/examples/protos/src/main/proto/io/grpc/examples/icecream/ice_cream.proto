@@ -17,9 +17,9 @@ service IceCream {
   rpc GetFlavors(Request) returns (FlavorsReply);
 }
 
-// The request message containing the user's name.
+// The request message containing the user's identifier.
 message Request {
-  string name = 1;
+  string user_id = 1;
 }
 
 // The response containing the cone list.
@@ -35,14 +35,14 @@ message FlavorsReply {
 // Cone of the ice cream, type is the (ordinal) identifier.
 message Cone {
   int32 type = 1;
-  string imageUrl = 2;
+  string image_url = 2;
   bool enabled = 3;
 }
 
 // Flavor of the cream.
 message Flavor {
   string name = 1;
-  string imageUrl = 2;
+  string image_url = 2;
   string description = 3;
   double price = 4;
   string barcode = 5;
