@@ -10,7 +10,7 @@ plugins {
     id("com.google.protobuf") version "0.8.18"
 }
 
-val composeVersion = "1.1.0"
+val composeVersion = "1.1.1"
 
 dependencies {
     implementation(project(":stub"))
@@ -18,8 +18,10 @@ dependencies {
 
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("androidx.activity:activity-compose:1.4.0")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
+    implementation("io.coil-kt:coil-compose:2.0.0")
+
+    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
 
     implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
     implementation("androidx.compose.material:material:$composeVersion")
