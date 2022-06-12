@@ -55,10 +55,14 @@ class MainViewModel : ViewModel() {
     }
 
     fun setFlavor(flavor: Flavor) {
-        val currentFlavorList = uiState.selectedFlavors
-        if (uiState.selectedCone != null && currentFlavorList.size == 3) {
-            return
+        if (uiState.selectedCone == null) return
+
+        val newList = uiState.selectedFlavors.run {
+            when (size) {
+                3 -> listOf(flavor)
+                else -> plus(flavor)
+            }
         }
-        uiState = uiState.copy(selectedFlavors = currentFlavorList.plus(flavor))
+        uiState = uiState.copy(selectedFlavors = newList)
     }
 }
