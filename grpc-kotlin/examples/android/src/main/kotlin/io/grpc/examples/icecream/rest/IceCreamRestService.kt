@@ -27,12 +27,11 @@ class IceCreamRestService {
         // TODO unimplemented
     }
 
+    private fun createRetrofitService(): RetrofitService =
+            Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(REST_SERVER_BASE_URL)
+                    .build()
+                    .create(RetrofitService::class.java)
+
 }
-
-
-fun createRetrofitService(): RetrofitService =
-        Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(REST_SERVER_BASE_URL)
-                .build()
-                .create(RetrofitService::class.java)
