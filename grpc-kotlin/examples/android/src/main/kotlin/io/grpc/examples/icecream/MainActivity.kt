@@ -94,7 +94,7 @@ private fun Content(uiState: UiState, viewModel: MainViewModel) {
         Spacer(modifier = Modifier.size(20.dp))
         if (uiState.flavors.isEmpty()) {
             Button(onClick = { viewModel.loadFlavors() }) {
-                Text(text = "Load Cones")
+                Text(text = "Load Flavors")
             }
         } else {
             LazyRow {

@@ -30,6 +30,9 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${rootProject.ext["coroutinesVersion"]}")
 
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
     runtimeOnly("io.grpc:grpc-okhttp:${rootProject.ext["grpcVersion"]}")
 
 }

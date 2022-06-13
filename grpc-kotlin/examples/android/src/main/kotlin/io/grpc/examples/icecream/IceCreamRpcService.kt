@@ -7,7 +7,7 @@ import kotlinx.coroutines.asExecutor
 import java.io.Closeable
 
 
-class IceCreamService : Closeable {
+class IceCreamRpcService : Closeable {
 
     private val channel = let {
         val uri = Uri.parse(SERVER_URL)

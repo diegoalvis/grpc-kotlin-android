@@ -1,16 +1,18 @@
 package io.grpc.examples.icecream
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
+import io.grpc.examples.icecream.rest.IceCreamRestService
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    private val service by lazy { IceCreamService() }
+        private val service by lazy { IceCreamRpcService() }
+//    private val service by lazy { IceCreamRestService() }
 
     var uiState by mutableStateOf(UiState())
         private set
@@ -23,6 +25,7 @@ class MainViewModel : ViewModel() {
                 val coneList = service.getCones("id")
                 uiState = uiState.copy(cones = coneList)
             } catch (e: Exception) {
+                Log.e("ALIVS", e.message!!)
                 uiState = uiState.copy(errorMessage = "Something went wrong. Try again")
             } finally {
                 uiState = uiState.copy(loading = false)
