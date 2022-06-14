@@ -24,16 +24,12 @@ class IceCreamRpcService : Closeable {
 
 
     suspend fun getCones(userId: String): List<Cone> {
-        val request = request {
-            this.userId = userId
-        }
+        val request = request { this.userId = userId }
         return coroutineStub.getCones(request).coneList
     }
 
     suspend fun getFlavors(userId: String): List<Flavor> {
-        val request = request {
-            this.userId = userId
-        }
+        val request = request { this.userId = userId }
         return coroutineStub.getFlavors(request).flavorList
     }
 

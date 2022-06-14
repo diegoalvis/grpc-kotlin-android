@@ -9,9 +9,10 @@ import io.grpc.examples.icecream.rest.dto.toCone
 import io.grpc.examples.icecream.rest.dto.toFlavor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.Closeable
 
 
-class IceCreamRestService {
+class IceCreamRestService : Closeable {
 
     private val service by lazy { createRetrofitService() }
 
@@ -23,9 +24,7 @@ class IceCreamRestService {
         return service.getFlavors(userId).map(FlavorRest::toFlavor)
     }
 
-    fun close() {
-        // TODO unimplemented
-    }
+    override fun close() = Unit
 
     private fun createRetrofitService(): RetrofitService =
             Retrofit.Builder()

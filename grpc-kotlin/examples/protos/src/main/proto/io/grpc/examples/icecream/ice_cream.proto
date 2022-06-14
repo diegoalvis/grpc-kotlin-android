@@ -8,8 +8,6 @@ package icecream;
 
 // Interface exported by the server.
 service IceCream {
-  // A simple RPC.
-  //
   // Obtains the list of Cones available.
   rpc GetCones(Request) returns (ConesReply);
 

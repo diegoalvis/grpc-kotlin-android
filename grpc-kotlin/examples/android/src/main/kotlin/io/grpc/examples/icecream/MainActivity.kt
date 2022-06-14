@@ -51,7 +51,7 @@ fun IceCreamSelector(viewModel: MainViewModel) {
                     ),
             contentAlignment = Alignment.Center
     ) {
-        Content(uiState, viewModel)
+        Content(viewModel)
         if (uiState.loading) {
             CircularProgressIndicator(modifier = Modifier.size(80.dp))
         }
@@ -61,7 +61,8 @@ fun IceCreamSelector(viewModel: MainViewModel) {
 }
 
 @Composable
-private fun Content(uiState: UiState, viewModel: MainViewModel) {
+private fun Content(viewModel: MainViewModel) {
+    val uiState = viewModel.uiState
     Column(modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(),
