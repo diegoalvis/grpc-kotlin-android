@@ -1,7 +1,5 @@
 package io.grpc.examples.icecream.rest
 
-import io.grpc.examples.icecream.rest.dto.ConeRest
-import io.grpc.examples.icecream.rest.dto.FlavorRest
 import retrofit2.http.GET
 import retrofit2.http.Query
 

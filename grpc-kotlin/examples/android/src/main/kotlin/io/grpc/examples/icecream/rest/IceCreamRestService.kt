@@ -3,10 +3,6 @@ package io.grpc.examples.icecream.rest
 import io.grpc.examples.icecream.Cone
 import io.grpc.examples.icecream.Flavor
 import io.grpc.examples.icecream.rest.RetrofitService.Companion.REST_SERVER_BASE_URL
-import io.grpc.examples.icecream.rest.dto.ConeRest
-import io.grpc.examples.icecream.rest.dto.FlavorRest
-import io.grpc.examples.icecream.rest.dto.toCone
-import io.grpc.examples.icecream.rest.dto.toFlavor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.Closeable

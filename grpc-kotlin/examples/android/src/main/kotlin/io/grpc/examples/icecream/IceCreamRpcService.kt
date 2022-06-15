@@ -1,24 +1,18 @@
 package io.grpc.examples.icecream
 
 import android.net.Uri
+import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asExecutor
 import java.io.Closeable
 
 
+const val SERVER_URL = "http://10.0.2.2:50051/"
+
 class IceCreamRpcService : Closeable {
 
-    private val channel = let {
-        val uri = Uri.parse(SERVER_URL)
-        val builder = ManagedChannelBuilder.forAddress(uri.host, uri.port)
-        if (uri.scheme == "https") {
-            builder.useTransportSecurity()
-        } else {
-            builder.usePlaintext()
-        }
-        builder.executor(Dispatchers.IO.asExecutor()).build()
-    }
+    private val channel = createChannel(SERVER_URL)
 
     private val coroutineStub = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
 
@@ -37,7 +31,16 @@ class IceCreamRpcService : Closeable {
         channel.shutdownNow()
     }
 
-    companion object {
-        private const val SERVER_URL = "http://10.0.2.2:50051/"
+}
+
+
+fun createChannel(serverUrl: String): ManagedChannel {
+    val uri = Uri.parse(serverUrl)
+    val builder = ManagedChannelBuilder.forAddress(uri.host, uri.port)
+    if (uri.scheme == "https") {
+        builder.useTransportSecurity()
+    } else {
+        builder.usePlaintext()
     }
+    return builder.executor(Dispatchers.IO.asExecutor()).build()
 }

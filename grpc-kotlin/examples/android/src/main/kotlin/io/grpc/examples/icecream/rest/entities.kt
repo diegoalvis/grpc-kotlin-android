@@ -1,4 +1,4 @@
-package io.grpc.examples.icecream.rest.dto
+package io.grpc.examples.icecream.rest
 
 import io.grpc.examples.icecream.Cone
 import io.grpc.examples.icecream.Flavor
