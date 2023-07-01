@@ -30,8 +30,6 @@ class IceCreamRpcService : Closeable {
     }
 
 }
-
-
 fun createChannel(serverUrl: String): ManagedChannel {
     val uri = Uri.parse(serverUrl)
     val builder = ManagedChannelBuilder.forAddress(uri.host, uri.port)

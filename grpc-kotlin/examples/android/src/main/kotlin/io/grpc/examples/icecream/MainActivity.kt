@@ -24,9 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val mainViewModel by viewModels<MainViewModel>()
-
         setContent {
             Surface(color = MaterialTheme.colors.background) {
                 IceCreamSelector(mainViewModel)
@@ -38,17 +36,16 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun IceCreamSelector(viewModel: MainViewModel) {
     val uiState = viewModel.uiState
-    Box(
-            modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                            brush = Brush.verticalGradient(
-                                    colors = listOf(
-                                            Color(0xBCD4),
-                                            Color(0x2721ECF3),
-                                    )
+    Box(modifier = Modifier
+            .fillMaxSize()
+            .background(
+                    brush = Brush.verticalGradient(
+                            colors = listOf(
+                                    Color(0xBCD4),
+                                    Color(0x2721ECF3),
                             )
-                    ),
+                    )
+            ),
             contentAlignment = Alignment.Center
     ) {
         Content(viewModel)
