@@ -13,9 +13,7 @@ const val SERVER_URL = "http://10.0.2.2:50051/"
 class IceCreamRpcService : Closeable {
 
     private val channel = createChannel(SERVER_URL)
-
     private val coroutineStub = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
-
 
     suspend fun getCones(userId: String): List<Cone> {
         val request = request { this.userId = userId }

@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.grpc.examples.icecream.rest.IceCreamRestService
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {

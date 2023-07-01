@@ -44,8 +44,8 @@ fun IceCreamSelector(viewModel: MainViewModel) {
                     .background(
                             brush = Brush.verticalGradient(
                                     colors = listOf(
-                                            Color(0xFF00BCD4),
-                                            Color(0xFF2196F3),
+                                            Color(0xBCD4),
+                                            Color(0x2721ECF3),
                                     )
                             )
                     ),
@@ -68,36 +68,12 @@ private fun Content(viewModel: MainViewModel) {
             .fillMaxHeight(),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally) {
-        Spacer(modifier = Modifier.size(20.dp))
-        if (uiState.cones.isEmpty()) {
-            Button(onClick = { viewModel.loadCones() }) {
-                Text(text = "Load Cones")
-            }
-        } else {
-            LazyRow {
-                uiState.cones.map { cone ->
-                    item {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Image(
-                                    painter = rememberAsyncImagePainter(cone.imageUrl),
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                            .size(140.dp)
-                                            .clickable {
-                                                viewModel.setCone(cone)
-                                            }
-                            )
-                        }
-                    }
-                }
-            }
+        Spacer(modifier = Modifier.size(50.dp))
+        if (uiState.selectedCone != null) {
+            SelectedIceCream(uiState)
         }
-        Spacer(modifier = Modifier.size(20.dp))
-        if (uiState.flavors.isEmpty()) {
-            Button(onClick = { viewModel.loadFlavors() }) {
-                Text(text = "Load Flavors")
-            }
-        } else {
+        Spacer(modifier = Modifier.weight(weight = 1.0f))
+        if (uiState.flavors.isNotEmpty()) {
             LazyRow {
                 uiState.flavors.map { flavor ->
                     item {
@@ -118,41 +94,68 @@ private fun Content(viewModel: MainViewModel) {
                 }
             }
         }
-        Spacer(modifier = Modifier.size(50.dp))
-        if (uiState.selectedCone != null) {
-            BoxWithConstraints(modifier = Modifier
-                    .fillMaxSize()
-                    .align(Alignment.CenterHorizontally)) {
-                uiState.selectedFlavors.reversed().mapIndexed { index, flavor ->
-                    Box(modifier = Modifier
-                            .zIndex(99 - index.toFloat())
-                            .align(Alignment.TopCenter)
-                            .graphicsLayer {
-                                translationY = (index * 80).toFloat()
-                            }
-                    ) {
-                        Image(
-                                painter = rememberAsyncImagePainter(flavor.imageUrl),
-                                contentDescription = null,
-                                modifier = Modifier
-                                        .size(80.dp)
-                        )
+        if (uiState.cones.isNotEmpty()) {
+            LazyRow {
+                uiState.cones.map { cone ->
+                    item {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Image(
+                                    painter = rememberAsyncImagePainter(cone.imageUrl),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                            .size(140.dp)
+                                            .clickable {
+                                                viewModel.setCone(cone)
+                                            }
+                            )
+                        }
                     }
                 }
-                Box(modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .padding(top = 10.dp)
-                        .graphicsLayer {
-                            translationY = (uiState.selectedFlavors.size * 80).toFloat()
-                        }
-                ) {
-                    Image(
-                            painter = rememberAsyncImagePainter(uiState.selectedCone.imageUrl),
-                            contentDescription = null,
-                            modifier = Modifier.size(140.dp)
-                    )
-                }
             }
+        }
+        Spacer(modifier = Modifier.size(20.dp))
+        Button(onClick = { viewModel.loadFlavors() }) {
+            Text(text = "Load Flavors")
+        }
+        Spacer(modifier = Modifier.size(20.dp))
+        Button(onClick = { viewModel.loadCones() }) {
+            Text(text = "Load Cones")
+        }
+        Spacer(modifier = Modifier.size(50.dp))
+    }
+}
+
+@Composable
+private fun SelectedIceCream(uiState: UiState) {
+    BoxWithConstraints(modifier = Modifier) {
+        uiState.selectedFlavors.reversed().mapIndexed { index, flavor ->
+            Box(modifier = Modifier
+                    .zIndex(99 - index.toFloat())
+                    .align(Alignment.TopCenter)
+                    .graphicsLayer {
+                        translationY = (index * 80).toFloat()
+                    }
+            ) {
+                Image(
+                        painter = rememberAsyncImagePainter(flavor.imageUrl),
+                        contentDescription = null,
+                        modifier = Modifier
+                                .size(80.dp)
+                )
+            }
+        }
+        Box(modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 10.dp)
+                .graphicsLayer {
+                    translationY = (uiState.selectedFlavors.size * 80).toFloat()
+                }
+        ) {
+            Image(
+                    painter = rememberAsyncImagePainter(uiState.selectedCone?.imageUrl),
+                    contentDescription = null,
+                    modifier = Modifier.size(140.dp)
+            )
         }
     }
 }
