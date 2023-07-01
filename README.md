@@ -1,6 +1,8 @@
 # grpc-kotlin-android
+
 GRPC example Server + Android (Kotlin)
 
 
 
-![gif](https://user-images.githubusercontent.com/6097526/173464863-189fd3e3-ee28-4ef2-91c4-791dbefa016a.gif)
+![ezgif com-video-to-gif](https://github.com/diegoalvis/grpc-kotlin-android/assets/6097526/9154b568-a996-4be8-bb07-7e0396ab32f5)
+
