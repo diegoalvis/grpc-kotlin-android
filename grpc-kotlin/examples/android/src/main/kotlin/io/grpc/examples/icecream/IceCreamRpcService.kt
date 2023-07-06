@@ -16,13 +16,23 @@ class IceCreamRpcService : Closeable {
     private val coroutineStub = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
 
     suspend fun getCones(userId: String): List<Cone> {
-        val request = request { this.userId = userId }
-        return coroutineStub.getCones(request).coneList
+        try {
+            val request = request { this.userId = userId }
+            return coroutineStub.getCones(request).coneList
+        } catch (e: Exception) {
+            // TODO("Not yet implemented")
+            throw e
+        }
     }
 
     suspend fun getFlavors(userId: String): List<Flavor> {
-        val request = request { this.userId = userId }
-        return coroutineStub.getFlavors(request).flavorList
+        try {
+            val request = request { this.userId = userId }
+            return coroutineStub.getFlavors(request).flavorList
+        } catch (e: Exception) {
+            // TODO("Not yet implemented")
+            throw e
+        }
     }
 
     override fun close() {
