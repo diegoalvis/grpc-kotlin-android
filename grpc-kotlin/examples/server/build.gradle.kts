@@ -16,17 +16,32 @@ dependencies {
     testImplementation("io.grpc:grpc-testing:${rootProject.ext["grpcVersion"]}")
 }
 
-tasks.register<JavaExec>("IceCreamServer") {
+//tasks.register<JavaExec>("IceCreamServer") {
+//    dependsOn("classes")
+//    classpath = sourceSets["main"].runtimeClasspath
+//    mainClass.set("io.grpc.examples.icecream.IceCreamServerKt")
+//}
+//val iceCreamServerStartScripts = tasks.register<CreateStartScripts>("iceCreamServerStartScripts") {
+//    mainClass.set("io.grpc.examples.icecream.IceCreamServerKt")
+//    applicationName = "ice-cream-server"
+//    outputDir = tasks.named<CreateStartScripts>("startScripts").get().outputDir
+//    classpath = tasks.named<CreateStartScripts>("startScripts").get().classpath
+//}
+//tasks.named("startScripts") {
+//    dependsOn(iceCreamServerStartScripts)
+//}
+
+tasks.register<JavaExec>("TravelServer") {
     dependsOn("classes")
     classpath = sourceSets["main"].runtimeClasspath
-    mainClass.set("io.grpc.examples.icecream.IceCreamServerKt")
+    mainClass.set("com.diegoalvis.example.grpc.TravelServerKt")
 }
-val iceCreamServerStartScripts = tasks.register<CreateStartScripts>("iceCreamServerStartScripts") {
-    mainClass.set("io.grpc.examples.icecream.IceCreamServerKt")
-    applicationName = "ice-cream-server"
+val travelServerStartScripts = tasks.register<CreateStartScripts>("travelServerStartScripts") {
+    mainClass.set("com.diegoalvis.example.grpc.TravelServerKt")
+    applicationName = "travel-server"
     outputDir = tasks.named<CreateStartScripts>("startScripts").get().outputDir
     classpath = tasks.named<CreateStartScripts>("startScripts").get().classpath
 }
 tasks.named("startScripts") {
-    dependsOn(iceCreamServerStartScripts)
+    dependsOn(travelServerStartScripts)
 }
