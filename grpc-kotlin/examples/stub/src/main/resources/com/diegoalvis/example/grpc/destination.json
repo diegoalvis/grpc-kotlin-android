@@ -1,0 +1,67 @@
+{
+  "destination": [
+    {
+      "id": "123",
+      "title": "Paris",
+      "description": "The city of lights, known for its art, fashion, and culture.",
+      "image_url": "https://example.com/images/paris.jpg",
+      "country": "France",
+      "region": "Île-de-France",
+      "things_to_do": [
+        {
+          "id": "td1",
+          "title": "Eiffel Tower",
+          "description": "Iconic symbol of Paris offering panoramic views.",
+          "image_url": "https://example.com/images/eiffel.jpg",
+          "reviews_count": 13450,
+          "score": 4.8
+        },
+        {
+          "id": "td2",
+          "title": "Louvre Museum",
+          "description": "World's largest art museum with a historic art collection.",
+          "image_url": "https://example.com/images/louvre.jpg",
+          "reviews_count": 12000,
+          "score": 4.7
+        }
+      ],
+      "food_and_drinks": [
+        {
+          "id": "fd1",
+          "name": "Croissant",
+          "image_url": "https://example.com/images/croissant.jpg"
+        },
+        {
+          "id": "fd2",
+          "name": "Baguette",
+          "image_url": "https://example.com/images/baguette.jpg"
+        }
+      ]
+    },
+    {
+      "id": "124",
+      "title": "Tokyo",
+      "description": "A city where tradition meets ultramodern.",
+      "image_url": "https://example.com/images/tokyo.jpg",
+      "country": "Japan",
+      "region": "Kanto",
+      "things_to_do": [
+        {
+          "id": "td3",
+          "title": "Tokyo Tower",
+          "description": "Landmark tower offering panoramic views of Tokyo.",
+          "image_url": "https://example.com/images/tokyo_tower.jpg",
+          "reviews_count": 8500,
+          "score": 4.6
+        }
+      ],
+      "food_and_drinks": [
+        {
+          "id": "fd3",
+          "name": "Sushi",
+          "image_url": "https://example.com/images/sushi.jpg"
+        }
+      ]
+    }
+  ]
+}

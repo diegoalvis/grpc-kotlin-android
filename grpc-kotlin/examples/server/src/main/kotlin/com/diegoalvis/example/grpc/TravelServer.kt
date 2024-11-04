@@ -5,7 +5,7 @@ import io.grpc.ServerBuilder
 
 class TravelServer(private val port: Int) {
 
-    private val destinationsData: Collection<Travel.Destination> by lazy { TravelDatabase.destinations() }
+    private val destinationsData: Collection<Destination> by lazy { TravelDatabase.destinations() }
 
     private val server: Server = ServerBuilder
         .forPort(port)
@@ -37,11 +37,11 @@ class TravelServer(private val port: Int) {
     }
 
     internal class TravelService(
-        private val destinationsData: Collection<Travel.Destination>,
+        private val destinationsData: Collection<Destination>,
     ) : TravelServiceGrpcKt.TravelServiceCoroutineImplBase() {
 
 
-        override suspend fun getDestinations(request: Travel.GetDestinationsRequest) = getDestinationsResponse {
+        override suspend fun getDestinations(request: GetDestinationsRequest) = getDestinationsResponse {
             destinations.addAll(destinationsData)
         }
 
